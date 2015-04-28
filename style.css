@@ -1,0 +1,332 @@
+
+/*******************
+GENERAL
+*******************/
+
+/*
+	What is the effect of box-sizing: border-box?
+*/
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Open Sans", sans-serif;
+	/*color: #222;*/
+	/*max-width: 940px;*/
+	margin: 0 auto;
+	font-size: 1em;
+}
+
+a {
+	text-decoration:none;
+	color: #222;
+}
+
+.main-header,
+.main-banner,
+.first-content,
+.third-content {
+	width:95%;
+	margin:0 auto;
+	color::#4B4B4B;
+}
+
+
+/*******************
+HEADER / NAVIGATION
+*******************/
+
+/*border*/
+/*.main-header {
+	border:1px dotted;
+}
+.main-logo {
+	border:1px dotted;
+}
+.main-nav {
+	border:1px dotted;
+}
+
+.main-nav ul {
+	border:1px dotted;
+}
+
+.main-nav li {
+ 	border:1px dotted;
+ }*/
+/*border*/
+
+.main-header {
+	height:100px;
+	padding-top:30px;
+	margin-bottom:40px;
+}
+
+.main-logo {
+	float:left;
+	margin:15px 0;
+}
+
+.main-nav {
+	float:right;
+	margin-right:1%;
+}
+
+/*.main-nav ul {
+	list-style: none;
+}*/
+
+.main-nav li {
+	list-style: none;
+	display:inline-block;
+	margin: 0 8px;
+}
+
+.main-nav a {
+	color: #D0D0D0;
+	font-size: .95em;
+	padding:10px 0;
+}
+
+a.selected, a:hover {
+	color:#4B4B4B;
+}
+
+/*******************
+BANNER
+*******************/
+
+.main-banner {
+	text-align: center;
+	height:600px;
+}
+
+.banner-img {
+	border:1px dotted gray;
+	margin: auto;
+	height:350px;
+}
+
+.main-banner h1 {
+	font-family: 'Righteous', cursive;
+	font-size:4.75em;
+	color: #ff5e62;
+	margin:0 10px 0px;
+}
+
+.main-banner p {
+	margin:60px 10px 0;
+	color: #D0D0D0;
+	font-size: .9em;
+}
+
+#divide {
+	background-color:#F0F0F0;
+	width:95%;
+	height:1px;
+	margin:auto;
+}
+
+/*******************
+FIRST-CONTENT
+*******************/
+/*how to calculate the grid width ?*/
+/*if responsive, % or px ?*/
+/*what's the difference by using div or ul for CSS ?*/
+
+.first-content {
+	height:490px;
+	margin-top:5%;
+}
+
+.first-content li {
+	list-style: none;
+	float:left;
+	width:20.75%;
+	margin:1.5%;
+	text-align: center;
+}
+ .first-content h3 {
+ 	color:#4B4B4B;
+ 	font-size: 1.2em;
+ }
+
+.first-content p {
+ 	font-size: .9em;
+ 	color: #D0D0D0;
+ 	line-height: 1.75em;
+ }
+
+/*how to style the bn ?*/
+.first-content a p {
+ 	color:#222;
+ 	font-size: .8em;	
+ 	border:1px solid #e4e4e4;
+ 	padding:6px 4px;
+	width:30%
+ }
+
+ .first-content a {
+ 	margin:10px;
+ }
+
+/*******************
+SECONDARY-CONTENT
+*******************/
+
+/*how to line up the title?*/
+
+.secondary-content {
+	height:400px;
+	background-color:#ff5e62;
+}
+
+#wrapper {
+	width:95%;
+	margin:auto;
+}
+
+.secondary-content li {
+	list-style: none;
+	float:left;
+	width:26.6666667%;
+	margin:2.5%;
+	margin-top:30px;
+}
+
+.secondary-content li h3 a{
+	font-size: 1.2em;
+	color:#FFF;
+}
+
+.secondary-content li p {
+	font-size: .9em;
+	color:#FFF;
+	line-height:1.5em;
+}
+
+.secondary-content h1 {
+	color:#fff;
+	padding-top:40px;
+	margin-bottom:0;
+}
+
+.secondary-content p {
+	color:#FCA2AF;
+	padding:0;
+	margin-top:1px;
+}
+
+
+/*******************
+THIRD-CONTENT
+*******************/
+
+.third-content {
+	height:600px;
+}
+
+.third-content ul {
+	width:95%;
+	margin:0 auto;
+}
+
+.third-content li {
+	list-style: none;
+	float:left;
+	width:45%;
+	margin:2.5%;
+}
+
+
+.third-content img {
+	max-width: 480px;
+}
+
+.third-content h1 {
+	margin:70px 0;
+	color:#4B4B4B;
+}
+
+.third-content h3 {
+	font-size: 1.2em;
+	color:#4B4B4B;
+	margin-top:50px;
+}
+
+.third-content p {
+	font-size: .9em;
+	color:#D0D0D0;
+	margin-bottom:40px;
+}
+
+/*bn*/
+
+ .third-content li a p {
+ 	color:#222;
+ 	font-size: .8em;
+ 	border:1px solid #e4e4e4;
+ 	padding:8px 12px;
+ 	width:18%;
+ }
+/*******************
+FOOTER
+*******************/
+.main-footer {
+	/*clear:both;*/
+	background-color:#F9F9F9;
+}
+
+.main-footer div {
+	display: inline-block;
+	vertical-align: top;
+	/*border:1px dotted;*/
+}
+
+#footer-logo p {
+	color:#D0D0D0;
+	font-size: .8em;
+	margin-top:0;
+}
+
+.main-footer div p {
+	color:#4B4B4B;
+	font-size: .9em;
+}
+
+
+#footer-logo { 
+	width:30%;
+	margin-right:10px;
+}
+#footer-locations {
+    width:30%;
+    margin-right:10px;
+}
+#footer-overview { 
+	width:20%;
+	margin-right:10px;
+}
+#footer-overview { width:20%; }
+
+#footer-locations li {
+	list-style: none;
+	font-size: .8em;
+	color:#D0D0D0;
+	/*border:1px dotted;*/
+}
+
+#footer-overview li {
+	list-style: none;
+	font-size: .8em;
+/*	border:1px dotted;*/
+}
+
+#footer-overview a {
+	color:#D0D0D0;
+}
+.test2{
+	color:blue;
+}
