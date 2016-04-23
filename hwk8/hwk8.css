@@ -1,0 +1,21 @@
+h1 {
+	font-family: verdana;
+	font-size: 1.25em;
+}
+.container {
+	width: 800px;
+	margin:10px auto;
+	text-align: center;
+}
+
+label{
+	font-family: verdana;
+	font-size: 0.75em;
+	font-weight: bold;
+}
+#grid {
+	margin-bottom: 10px;
+}
+#done {
+  margin-left: 10px;
+}

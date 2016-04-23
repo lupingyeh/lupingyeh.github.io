@@ -1,0 +1,242 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Grand Central Station </title>
+<meta charset="UTF-8">
+<meta name="viewport" 
+content="width=device-width, user-scalable=yes, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0" />
+
+<style>
+      body {
+        margin: 10px;
+        padding: 0px;
+        font-family: Garamond, serif;
+        font-size: 24px;
+        
+      }
+      canvas {
+        position: absolute;
+      }
+      img {display: none;}
+     
+</style>
+<script>
+//http://faculty.purchase.edu/jeanine.meyer/html5/jigsawcanvas1.html
+var nums = 9;
+var t;
+var travelunits = 2000; //
+var timeincrement = 10;  //interval of time
+var canvas1;
+var context1;
+var canvases = new Array();
+
+var destx = new Array(nums);
+var gapx = new Array(nums);
+var gapy = new Array(nums);
+var cols = 1000;
+var rows = 400;
+var panorama = new Image();
+
+var topedge = 0;
+var wedgeh = 189;
+var wedgew = 100;
+var offsetx = 4;
+var offsety = 250;
+var mouseDown = false;
+var oldx;
+var oldy;
+var movingobj;
+var margin = 10;
+var wwidth;
+var wheight;
+var pwidth;
+var pheight;
+
+
+function init() {
+  var i;
+  panorama.src="grandcentralstation.jpg";
+  canvas1 = document.getElementById('canvas1');
+  canvas1.style.top = String(offsety)+"px";
+  canvas1.style.left = String(offsetx)+"px";
+  context1 = canvas1.getContext('2d');
+  
+  wwidth = window.innerWidth;
+  wheight = window.innerHeight;
+  canvas1.width = wwidth;
+  canvas1.height = .4 * wwidth;
+  pwidth = panorama.width;
+  pheight = panorama.height;
+  pratio = pheight/pwidth;  //must preserve this
+  
+  
+   pwidth = .98*wwidth;
+   pheight = pratio * pwidth;
+    
+    wedgew = pwidth * .1;   
+    wedgeh =  pheight;
+   
+  context1.drawImage(panorama,0,0,pwidth,pheight);
+ 
+  var can;
+  var ctx;
+  for (i=0;i<nums;i++){
+   can = document.createElement("canvas");
+   can.width=wedgew;
+   can.height=wedgeh;
+   can.i = i;
+   ctx = can.getContext("2d");
+   canvases.push(can);
+   
+   ctx.drawImage(canvas1,i*wedgew,topedge,wedgew,wedgeh,0,0, wedgew,wedgeh);
+   document.body.appendChild(can);
+   can.onmousedown=startdragging;
+   can.addEventListener("touchstart", touchHandler, true);
+    
+   destx[i] = offsetx+i*wedgew;
+  }
+ placerandomly();
+}
+
+function startdragging(ev){
+  movingobj = ev.target;
+  oldx = parseInt(ev.pageX);
+  oldy = parseInt(ev.pageY);
+  movingobj.addEventListener("mousemove",moving,false);
+  movingobj.addEventListener("mouseup",stopmove,false);
+  movingobj.addEventListener("touchmove", touchHandler, true);
+  movingobj.addEventListener("touchend", touchHandler, true);
+  movingobj.addEventListener("touchcancel", touchHandler, true);
+}
+
+function moving(ev) {
+  if(movingobj) {
+   newx = parseInt(ev.pageX);
+   newy = parseInt(ev.pageY);
+   delx = newx-oldx;
+   dely = newy-oldy;
+   oldx = newx;
+   oldy = newy;
+   curx = parseInt(movingobj.style.left);
+   cury = parseInt(movingobj.style.top);
+   movingobj.style.left = String(curx+delx)+"px";
+   movingobj.style.top = String(cury+dely)+"px";
+ }
+}
+
+function stopmove(ev){
+   movingobj.removeEventListener("mousemove",moving,false);
+   movingobj.removeEventListener("mouseup",stopmove,false);
+   movingobj.removeEventListener("touchmove",stopmove,false);
+   movingobj.removeEventListener("touchend",stopmove,false);
+   movingobj.removeEventListener("touchcancel",stopmove,false);
+   movingobj=null;
+   check();
+}
+
+function touchHandler(event)
+{
+    var touches = event.changedTouches;
+  if (touches.length>1) {
+    return false;
+  }
+   var first = touches[0];
+    var type = "";
+         switch(event.type)
+    {
+        case "touchstart": type = "mousedown"; break;
+        case "touchmove":  type="mousemove"; break;        
+        case "touchend":   type="mouseup"; break;
+        case "touchcancel": type="mouseup"; break;
+        default: return;
+    }
+  var simulatedEvent = document.createEvent("MouseEvent");
+    simulatedEvent.initMouseEvent(type, true, true, window, 1, 
+                              first.screenX, first.screenY, 
+                              first.clientX, first.clientY, false, 
+                              false, false, false, 0, null);
+    first.target.dispatchEvent(simulatedEvent);
+    event.preventDefault();
+}
+
+function check(){
+  var i;
+  var xs = new Array(nums);
+  var ys = new Array(nums);
+  //compute average x from nominal x
+  //compute average y from nominal y
+    var sumx = 0;
+    var sumy = 0;
+    for(i=0;i<nums;i++){
+      xs[i] = parseInt(canvases[i].style.left);
+      ys[i] = parseInt(canvases[i].style.top);
+      sumx+=i*wedgew-xs[i];
+      sumy+=ys[i];
+    }
+    var avx = sumx/nums;
+    var avy = sumy/nums;
+    //alert("in check, avx is "+avx);
+    for(i=0;i<nums;i++){
+      if (Math.abs((i*wedgew-xs[i])-avx)>margin) {
+           return;}
+      if (Math.abs(ys[i]-avy)>margin) {
+           return;}
+    }
+    alert("close enough");
+}
+
+function placerandomly() {
+  context1.clearRect(0,0,wwidth,wheight);
+  var ranx;
+  var rany;
+  for(var i=0;i<nums;i++) {
+   ranx = offsetx+Math.random()*600*wwidth/1000;
+   rany = offsety+Math.random()*300*wheight/400;
+   canvases[i].style.left = String(ranx)+"px";
+   canvases[i].style.top = String(rany)+"px";
+   canvases[i].style.visibility = 'visible';
+  }
+}
+
+function setuptravelback() {
+  t = travelunits;
+  for(i=0;i<nums;i++){
+   gapx[i] = parseInt(canvases[i].style.left)-destx[i];
+
+   gapy[i] = parseInt(canvases[i].style.top)- offsety;
+ }
+  tid = setInterval(moveback,timeincrement)
+}
+
+function moveback() {
+  var i;
+  t-=timeincrement;
+  if (t>0) {
+    for(i=0;i<nums;i++){
+      canvases[i].style.top = String(offsety+gapy[i]*t/travelunits)+"px";
+      canvases[i].style.left= String(destx[i]+gapx[i]*t/travelunits)+"px";
+    }
+  }
+else {
+      for (i=0;i<nums;i++){
+        canvases[i].style.visibility = 'hidden';
+      }
+      context1.drawImage(panorama,0,0,pwidth,pheight);
+      clearInterval(tid);
+  }
+}
+
+</script>
+</head>
+ <body onload="init();">
+   Grand Central Station <br/>
+   mouse or touch down, drag, mouse or touch up to move pieces to re-create scene.<br/>
+    <canvas id="canvas1" width="1000" height="400"> </canvas>
+   <br/>    
+   <button onclick="placerandomly();">mix up pieces [again]</button>
+   <button onclick="setuptravelback();">recreate original<html>
+<img src="grandcentralstation.jpg">
+ </body>
+   
+</html>
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Registration Form</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript" src = "invoke_php.js"></script>
+</head>
+
+<body>
+
+    <h1>Registration Form</h1>
+
+    <form method="post" action="register.php">
+        <label>Username: </label>
+        <input id="username" type="text" onBlur="checkusername()" name="username" required>
+        <br><br>
+
+        <div style="color:red" id="usernamestatus"></div>
+
+
+        <label for="login__password">Password: </label>
+        <input id="password" type="password" name="password" required>
+        <br><br>
+
+        <input type="reset" value="Reset">
+        <input type="submit" value="Submit">
+
+    </form>
+
+
+</body>
+
+</html>

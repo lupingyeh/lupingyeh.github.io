@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8" />
+	<!-- <link rel="stylesheet" type = "text/css" href="hwk4.css" media = "all" /> -->
+	<title>The Daily Clarion</title>
+</head>
+<body>
+	<div id="results"></div>
+	<form id = "quizForm" action = "" method="POST">
+		<p>Q1:According to Kepler the orbit of the earth is a circle with the sun at the center.</p>
+		<input type = "radio" name = "q1" value = "0" > <label>True</label> <br>
+		<input type = "radio" name = "q1" value = "1" > <label>False</label>
+
+		<p>Q2:Ancient astronomers did consider the heliocentric model of the solar system but rejected it because they could not detect parallax.</p>
+		<input type = "radio" name = "q2" value = "1" > <label>True</label> <br>
+		<input type = "radio" name = "q2" value = "0" > <label>False</label>
+
+		<p>Q3:The total amount of energy that a star emits is directly related to its </p>
+		<input type = "checkbox" name = "q3" value = "0" > <label>surface gravity and magnetic field </label> <br>
+		<input type = "checkbox" name = "q3" value = "1" > <label>radius and temperature </label> <br>
+		<input type = "checkbox" name = "q3" value = "0" > <label>pressure and volume </label> <br>
+		<input type = "checkbox" name = "q3" value = "0" > <label> location and velocity </label>
+
+		<p>Q4:Stars that live the longest have  </p>
+		<input type = "checkbox" name = "q4" value = "0" > <label>high mass </label> <br>
+		<input type = "checkbox" name = "q4" value = "0" > <label>high temperature </label> <br>
+		<input type = "checkbox" name = "q4" value = "0" > <label>lots of hydrogen </label> <br>
+		<input type = "checkbox" name = "q4" value = "1" > <label>small mass </label>
+
+		<p>Q5:A collection of a hundred billion stars, gas, and dust is called a <input type = "text" name = "q5">. </p>
+		<p>Q6:The inverse of the Hubble's constant is a measure of the  <input type = "text" name = "q6"> of the universe.</p>
+		<br>
+
+		<input type = "reset"  value = "Clear" >
+        <input type = "button" name = "gradeBtn" value = "Grade" >
+	</form>
+
+<script type="text/javascript">
+document.getElementById("quizForm").gradeBtn.onclick = getGrade;
+
+    // validate
+    function getGrade(){
+	    var elt = document.getElementById("quizForm");
+	    var total = 6;
+	    var score = 0;
+	    var a1 = elt.q1.value ;
+	    var a2 = elt.q2.value ;
+	    var a3 = elt.q3.value ;
+	    var a4 = elt.q4.value ;
+	    var a5 = elt.q5.value ;
+	    var a6 = elt.q6.value ;
+	    for (i = 1; i <= total; i++) {
+	    	if (eval("a"+i) == "")
+	    	{
+		    alert("Please answer all the questions!");
+		    return false;
+		    }
+	    }
+
+	    // Check Answers 1-4
+	    for ( i = 1; i <= 4; i++) {
+			if (("a"+i) == "1") 
+			{
+				score++;
+			}
+		}
+        // Check Answers 5
+		if (a5 = "galaxy"){
+			score++;
+			// return true;
+		}
+        // Check Answers 5
+		if (a6 = "age"){
+			score++;
+			// return true;
+		}
+
+		// Display Results
+		var results = document.getElementById("results");
+		results.innerHTML = '<h3>Your grade is <span>'+score+'</span> out of <span>'+total+'</span></h3>';
+		alert('Your grade is '+score+' out of ' +total);
+		return false;
+		
+
+    }
+function validate(){
+	var elt = document.getElementById("quizForm");
+	for(j = 0; j < elt.length; j++){
+     	if(elt[j].checked && elt[j].value !==""){
+     		return true;
+     		return getGrade();
+     		} else {
+     			alert ("please answer all the questions!");
+     			return false;
+     			break;
+     		}
+    }    			
+}
+
+function validate(){
+	var elt = document.getElementById("quizForm");
+	var grading = false;
+	for(j = 0; j < elt.length; j++){
+     	if(elt[j].checked && elt[j].value !== null){
+     		grading = true;
+     	} 
+    } 
+    if (grading = true){
+    	return getGrade();
+    } else {
+    	alert("Please answer all the questions!");
+    }  			
+}
+
+</script>
+
+</body>
+
+</html>

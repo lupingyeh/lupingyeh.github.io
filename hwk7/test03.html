@@ -1,0 +1,109 @@
+<!--
+   Name: Emilee Lafferty
+   Class: CpSc 217, Fall, 2011
+   Instuctor: Dr. Conlon
+   15 Puzzle
+   Date Started: Oct 26, 2011
+   Date Ended: Nov 3, 2011
+-->
+<html>
+   <head>
+      <script language="javascript" type="text/javascript">
+		 var nums = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15, '&nbsp'],
+		 tabledata=0, cells, blank= '&nbsp';
+	    //Swapping function so that the images don't repeat. Presented in class.
+         function swap(x,y){
+            var temp = x;
+            x=y;
+            y=temp;
+            return [x,y];
+        }
+
+         function preScramble(nums){
+            for (var i=0; i<100; i++){ 
+               r1 = Math.floor(Math.random() * nums.length);
+               r2 = Math.floor(Math.random() * nums.length);
+               s = swap(nums[r1], nums[r2]);
+               nums[r1] = s[0];
+               nums[r2] = s[1];
+            }
+          return nums.length;
+       }
+	   //This was my logic to move the tiles, if it was exactly next to the
+	   // blank tile and depending on where, it would either be moved left,
+	   // right, up, or down. Unfortunately, I never got it to implement
+	   // correctly.
+        function moveSlot(blank){
+           var nums = 0;
+           if((tabledata % 4) > 0 && nums.length[blank - 1]){
+              nums = tabledata - 1;}// to move left
+           if((tabledata % 4) < 3 && nums.length[blank + 1]){
+              nums = tabledata + 1;}// to move right
+           if(tabledata > 3 && nums.length[blank - 4]){
+              nums = tabledata - 4;}// to move up
+           if(tabledata < 12 && nums.length[blank + 4]){
+              nums = tabledata + 4;}//to move down
+        }
+		
+		//Therefore, I never got to see if this worked either.
+        function checkForWinner(cellNo){
+		   checkForWinner = false;
+		   pattern = /1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,'&nbsp'/;
+		   if(pattern.test(tabledata[cellNo].innerHTML)) return;
+		   announceWinner();
+		}
+		
+		function announceWinner(){
+		   if (checkForWinner = true){
+		      document.write('You have won!')
+			  }
+		}
+		
+		//Opens up the directions
+		function myPopup() {
+           window.open( "other.html" )
+		 }
+       </script>
+       
+       <style>
+	      body {
+             background-image: url(bg1.jpg);
+             background-repeat: repeat;
+             background-attachment: fixed;
+          }
+        </style>
+     </head>
+     <body>
+	   <script>
+	      tabledata = document.getElementsByTagName("td");
+	      preScramble(nums);
+	         document.write('<form>');
+	         document.write("<table width='250'	bordercolor='black'" +
+			                "style='background-color:#FFF8C6'" +
+							"align ='center' border='3'>");
+	         for (var row=0; 4 > row; row++) {
+                document.write('<tr id="tablerow">');
+                for (var col=0; 4 > col; col++){
+                   document.write('<td onclick="tabledata" align="center"><h1>');
+			       //document.write(onclick=(tabledata));
+	               document.write( nums[row * 4 + col]);
+                   document.write('</td>')
+                }
+              document.write('</tr>');
+            }
+		 
+       </script>
+	<body>
+	  <h1 align="center"> 15 Puzzle :)/> </h1>
+	  <hr/>
+      <table align="center">
+         <tr><td>
+            <form align="center">
+              <input type="button" onclick="myPopup()" value="Help">
+              <input type="button" value="Start Over" +
+		             onclick="window.location.reload()">
+            </form>
+         </tr></td>
+        </table>
+      </body>
+</html>

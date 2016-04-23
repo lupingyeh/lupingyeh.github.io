@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Game of 15</title>
+	<link rel="stylesheet" type="text/css" href="hwk7.css">
+	<script type="text/javascript" src="hwk7.js"></script>
+</head>
+
+<body>
+<div class = "container">
+
+	<h3>Game of 15</h3>
+		<p>Press Shuffle to start the game<br>Press Reset to solve the game</p>	
+	<table border="0" cellspacing="0" cellpadding="1">
+		<form>
+		<tr>
+			<td><input type="button" name="0_0" value="1" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="1_0" value="2" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="2_0" value="3" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="3_0" value="4" class = "box" onclick="press15(this.form, this);"></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="0_1" value="5" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="1_1" value="6" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="2_1" value="7" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="3_1" value="8" class = "box" onclick="press15(this.form, this);"></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="0_2" value="9"  class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="1_2" value="10" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="2_2" value="11" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="3_2" value="12" class = "box" onclick="press15(this.form, this);"></td>
+		</tr>
+		<tr>
+			<td><input type="button" name="0_3" value="13" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="1_3" value="14" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="2_3" value="15" class = "box" onclick="press15(this.form, this);"></td>
+			<td><input type="button" name="3_3" value=" " class = "box"  onclick="press15(this.form, this);"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><input type="button" value="Reset" class="inputButton" onclick="resetboard15(this.form);"></td>
+			<td colspan="2"><input type="button" value="Shuffle" class="inputButton" onclick="shuffle15(this.form,150);"></td>
+		</tr>
+        </form>
+     </table>
+
+ </div>	
+</body>
+</html>

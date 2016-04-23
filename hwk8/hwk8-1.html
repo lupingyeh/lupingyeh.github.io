@@ -1,0 +1,124 @@
+<html>
+<head>
+<title>Jig-Saw Puzzle</title>
+<link rel="stylesheet" type="text/css" href="hwk8.css">
+<script type="text/javascript" src = "hwk8.js"></script>
+</head>
+<body onload="timer();">
+    <div class = "container">
+    	<h1>Jig-Saw Puzzle</h1>
+        <img id = "grid" src="img/puzzleback.gif" onload="loadImages()"><br>
+        <label>Timer: <span id="showTimer"></span><span>seconds</span> </label> 
+        <button id="done" onclick = "stopTimer();">Done</button>
+    </div>
+    <div id="imageSet">
+        <img src = "" id = "d0" style = "position: absolute; top: 430px; left: 300px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d1" style = "position: absolute; top: 430px; left: 425px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d2" style = "position: absolute; top: 430px; left: 550px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d3" style = "position: absolute; top: 430px; left: 675px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d4" style = "position: absolute; top: 430px; left: 800px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d5" style = "position: absolute; top: 430px; left: 925px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d6" style = "position: absolute; top: 550px; left: 300px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d7" style = "position: absolute; top: 550px; left: 425px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d8" style = "position: absolute; top: 550px; left: 550px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d9" style = "position: absolute; top: 550px; left: 675px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d10" style = "position: absolute; top: 550px; left: 800px;" onmousedown = "grabber(event);">
+        <img src = "" id = "d11" style = "position: absolute; top: 550px; left: 925px;" onmousedown = "grabber(event);">
+    </div>
+</body>
+
+<script type="text/javascript">
+//create a shuffle array function
+function shuffle(array){
+  var currentIndex = array.length;
+  var temporaryValue; 
+  var randomIndex;
+
+  // while there remain elements to shuffle
+  while (currentIndex !== 0)
+  {
+    // Pick an element that remains
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    //Swap that element with the current element
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+
+/* Generates a random whole number inclusive for a max and min range */
+function getRandomNo(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+/* Randomly select directory for the images and load images randomly */
+function loadImages(){
+  var imageSet = document.getElementById("imageSet");
+  var m = getRandomNo(1,3); 
+  var n = [1,2,3,4,5,6,7,8,9,10,11,12];
+  n = shuffle(n);
+  for (var i = 0 ; i <= 12 ; i++){
+    imageSet.children[i].src = "img/img"+ m + "-" + n[i] + ".jpg";
+  }  
+}
+
+// stop a timer
+function stopTimer() {
+    clearInterval(myClock);
+}
+
+//create a timer
+// var secTime = 0,
+//       minTime = 0,
+//       hourTime = 0;
+  
+// var myClock =  setInterval(function(){
+//     var maxSec = 59,
+//         maxMin = 59,
+//         maxHour = 59;
+    
+//     if( secTime > maxSec ){
+//       minTime++;
+//       if( minTime > maxMin ){
+//         hourTime++;
+//         if( hourTime > maxHour ){
+//           hourTime = 0;
+//           minTime = 0;
+//           secTime = 0;
+//         }
+//         minTime = 0
+//       }
+//       secTime = 0;
+//     }    
+//         var newSec = (secTime.toString().length == 1) ? '0' + secTime : secTime,
+//             newMin = (minTime.toString().length == 1) ? '0' + minTime : minTime,
+//             newHour = (hourTime.toString().length == 1) ? '0' + hourTime : hourTime;
+    
+//         document.getElementById('timer').innerHTML = newHour + ':' + newMin + ':' + newSec;
+    
+//     secTime++;    
+// }, 1000);
+
+// created a time function
+var ticks = 0;
+var clock;
+function timer() {
+    clock = setTimeout(add, 1000);
+}
+
+function add() {
+    ticks++;
+    timer();
+    document.getElementById("showTimer").innerHTML = ticks;
+}
+
+function stopTimer() {
+    clearTimeout(clock);
+}
+
+</script>
+
+
+
+</html>

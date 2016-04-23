@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Ho Post Rock</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./css/login.css" type="text/css">
+</head>
+
+<body>
+    <div class="vid-container">
+        <video class="bgvid" autoplay="autoplay" muted="muted" preload="auto" loop>
+            <source src="burning.mp4" type="video/mp4">
+        </video>
+        <div class="inner-container">
+            <video class="bgvid inner" autoplay="autoplay" muted="muted" preload="auto" loop>
+                <source src="burning.mp4" type="video/mp4">
+            </video>
+            <div class="box">
+                <form action="login.php" method="post" id="loginForm">
+                <h1>Ho Post Rock Sign In</h1>
+                <input type="text" name="email" placeholder="Email Address" required/>
+                <input type="password" name="password" placeholder="Password" required/>
+                <input id="submit" type="submit" value="Let Me In!" />
+                </form>
+                <p>Not a member? <span><a href="signup.html">Sign Up</a></span></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

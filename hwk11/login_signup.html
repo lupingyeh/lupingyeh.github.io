@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Login/Sign Up</title>
+    <style>
+    .box {
+        border: 1px solid black;
+        width:45%;
+        margin:30px auto;
+        padding:10px;
+    }
+    form {
+        display: inline-block;
+        /*padding:10px 10px;*/
+        padding-left:20px;
+        margin-left:20px;
+        margin-bottom: 20px;
+        text-align: center;
+        /*border:1px solid red;*/
+    }
+    #form2 {
+        border-left:1px dotted gray;
+    }
+
+    </style>
+</head>
+
+<body>
+    <div class = "box">
+    
+    <form method="post" action="login.php">
+        <h3>User Login</h3>
+        Username: <input type="text" name="username" required="required" />
+        <br /><br />
+        Password: <input type="password" name="password" required="required" />
+        <br /><br />
+        
+        <button type="reset">Reset</button>
+        <button type="submit">Login</button>
+        <br /><br />
+    </form>
+
+    <form method="post" action="signup.php" id = "form2">
+        <h3>I'me new! Sign Up</h3>
+        Username: <input type="text" name="username_new" required="required" />
+        <br /><br />
+        Password: <input type="password" name="password_new"  required="required" />
+        <br /><br />
+        
+        <button type="reset">Reset</button>
+        <button type="submit">Sign Up</button>
+    </form>
+    </div>
+</body>
+
+</html>

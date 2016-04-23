@@ -1,0 +1,72 @@
+<html>
+<header>
+    <meta charset = "utf-8" />
+    <link rel="stylesheet" type = "text/css" href="hwk5.css" media = "all" />
+    <title>Registration</title>
+</header>
+
+<body>
+    <div class = "container">
+        <div id = "logbox">
+            <form id = "registerForm" action = "" method="POST">
+                <h1>Create an account</h1>          		
+                <input type = "text" name = "username" size = "40" placeholder= "Username" required class="input pass">
+                <input type = "password" name = "password" size = "40" placeholder= "Password" required class="input pass">
+                <input type = "password" name = "confirmPassword" size ="40" placeholder= "Confirm password" required class="input pass">
+                <input type = "reset"  value = "Clear" class="inputButton">
+                <input type = "button" name = "reBtn" value = "Register" class="inputButton">
+            </form>
+        </div>
+    </div>
+
+<script type="text/javascript">
+    document.getElementById("registerForm").reBtn.onclick = Registration;
+    function Registration() {
+    	if (validateUsername() && validatePassword() && validateConfirmPassword()){
+    		alert("Passed Validation");
+    	} else {
+    		alert("Invalid Input");
+    	}  	
+    }
+    // The user name must be between 6 and 10 characters long.
+	// The user name must begin with a letter.
+	// The user name must contain only letters and digits.
+    function validateUsername() {
+    	var elt = document.getElementById("registerForm");
+    	var getUsername = elt.username.value;
+    	var re = new RegExp(/^[a-zA-Z][a-zA-Z0-9]{5,9}$/);
+    	if (!re.test(getUsername)) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    }
+	// The password must be between 6 and 10 characters.
+	// The password can contain only letters, digits and underscores.
+	// The password must have at least one lower case letter, at least one upper case letter, and at least one digit
+    function validatePassword() {
+    	var elt = document.getElementById("registerForm");
+    	var getPassword = elt.password.value;
+		var re1 = new RegExp(/((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10})/);
+    	var re2 = new RegExp(/[a-zA-Z0-9_]{6,10}$/);
+    	if (! (re1.test(getPassword) && re2.test(getPassword)) ) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    }
+
+    function validateConfirmPassword() {
+    	var elt = document.getElementById("registerForm");
+        var getPassword = elt.password.value;
+        var getConfirmPassword = elt.confirmPassword.value;
+        if( getPassword == getConfirmPassword) {
+        	return true;
+        } else {
+        	return false;
+        }
+    }
+</script>
+</body>
+
+</html>

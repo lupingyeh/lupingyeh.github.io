@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "utf-8" />
+	<!-- <link rel="stylesheet" type = "text/css" href="hwk4.css" media = "all" /> -->
+	<title>Quiz</title>
+</head>
+<body>
+	
+	<form id = "quizForm" action = "" method="POST">
+		<h1>Quiz</h1>
+		<p>Q1:According to Kepler the orbit of the earth is a circle with the sun at the center.</p>
+		<input type = "radio" name = "q1" value = "true" > <label>True</label> <br>
+		<input type = "radio" name = "q1" value = "false" > <label>False</label>
+
+		<p>Q2:Ancient astronomers did consider the heliocentric model of the solar system but rejected it because they could not detect parallax.</p>
+		<input type = "radio" name = "q2" value = "true" > <label>True</label> <br>
+		<input type = "radio" name = "q2" value = "false" > <label>False</label>
+
+		<p>Q3:The total amount of energy that a star emits is directly related to its </p>
+		<input type = "checkbox" name = "q3" value = "0" > <label>surface gravity and magnetic field </label> <br>
+		<input type = "checkbox" name = "q3" value = "radius and temperature" > <label>radius and temperature </label> <br>
+		<input type = "checkbox" name = "q3" value = "0" > <label>pressure and volume </label> <br>
+		<input type = "checkbox" name = "q3" value = "0" > <label> location and velocity </label>
+
+		<p>Q4:Stars that live the longest have  </p>
+		<input type = "checkbox" name = "q4" value = "0" > <label>high mass </label> <br>
+		<input type = "checkbox" name = "q4" value = "0" > <label>high temperature </label> <br>
+		<input type = "checkbox" name = "q4" value = "0" > <label>lots of hydrogen </label> <br>
+		<input type = "checkbox" name = "q4" value = "small mass" > <label>small mass </label>
+
+		<p>Q5:A collection of a hundred billion stars, gas, and dust is called a <input type = "text" name = "q5">.</p>
+		<p>Q6:The inverse of the Hubble's constant is a measure of the  <input type = "text" name = "q6"> of the universe.</p>
+		<br>
+
+		<input type = "reset"  value = "Clear" >
+    <input type = "button" name = "gradeBtn" value = "Grade" >
+	</form>
+	
+
+<script type="text/javascript">
+document.getElementById("quizForm").gradeBtn.onclick = getGrade;
+// there are bugs
+function validate(){
+  var elt = document.getElementById("quizForm");
+  for(j = 0; j < elt.length; j++){
+      if(elt[j].checked == false && elt[j].value !==""){
+        return false;
+        } else {
+          return true;
+        }
+    }         
+}
+
+function getGrade(){
+//variables with global implications
+var getValidate = validate();
+  if(getValidate == false){
+     alert ("please answer all the questions!");
+  } else {
+     var totalQuestions = 6;
+     var correctAnswers = 0;
+     var alertText;
+     var i;
+     var elt = document.getElementById("quizForm");
+
+
+	// q1: radio button
+     var a1 = elt.q1;
+     for(i = 0; i< a1.length; i++){
+     	if(a1[i].checked){
+     		if(a1[i].value == "false"){
+     			correctAnswers++;
+     		    break;
+     		}
+     	}
+     }
+	console.log("q1: "+correctAnswers);
+
+	// q2: radio button
+    var a2 = elt.q2;
+     for(i = 0; i< a1.length; i++){
+     	if(a2[i].checked){
+     		if(a2[i].value == "true"){
+     			correctAnswers++;
+     		    break;
+     		}
+     	}
+     }
+	console.log("q2: "+correctAnswers);
+
+     // q3: checkbox
+     var a3 = elt.q3;
+     var a3Answers = new Array();
+     var a3Right = new Array("radius and temperature");
+     var a3Bool = true;
+
+      for(i = 0; i< a3.length; i++){
+     	if(a3[i].checked){
+     		a3Answers.push(a3[i].value);
+     	}
+      }
+      a3Answers.sort();
+      a3Right.sort();
+      if (a3Answers.length == a3Right.length){
+      	for(i = 0; i<a3Answers.length; i++){
+      		if(a3Answers[i] != a3Right[i]){
+      			a3Bool = false;
+      			break;
+      		}
+      	}
+      }
+      else {
+      	a3Bool = false;
+      }
+      if (a3Bool == true){
+      	correctAnswers++;
+      }
+	console.log("q3: "+correctAnswers);
+
+	// q4: checkbox
+     var a4 = elt.q4;
+     var a4Answers = new Array();
+     var a4Right = new Array("small mass");
+     var a4Bool = true;
+
+      for(i = 0; i< a4.length; i++){
+     	if(a4[i].checked){
+     		a4Answers.push(a4[i].value);
+     	}
+      }
+      a4Answers.sort();
+      a4Right.sort();
+      if (a4Answers.length == a4Right.length){
+      	for(i = 0; i<a4Answers.length; i++){
+      		if(a4Answers[i] != a4Right[i]){
+      			a4Bool = false;
+      			break;
+      		}
+      	}
+      }
+      else {
+      	a4Bool = false;
+      }
+      if (a4Bool == true){
+      	correctAnswers++;
+      }
+	console.log("q4: "+correctAnswers);
+
+
+    // q5: text
+    var a5 = elt.q5.value.toLowerCase();
+     if(a5 == 'galaxy') {
+          correctAnswers++;
+     }
+	console.log("q5: "+correctAnswers);
+
+	// q6: text
+     var a6 = elt.q6.value.toLowerCase();
+     if(a6 == 'age') {
+		  correctAnswers++;
+     }
+	console.log("q6: "+correctAnswers);
+
+
+	//alert resultes
+     if(correctAnswers == totalQuestions) {
+          alertText = "Congratulations! Your grade is " + correctAnswers + "/" + totalQuestions + " !";
+     }
+     else {
+          alertText = "Your grade is  " + correctAnswers + "/" + totalQuestions + " !";
+     }
+     alert(alertText);
+  }
+}
+
+</script>
+</body>
+</html>
